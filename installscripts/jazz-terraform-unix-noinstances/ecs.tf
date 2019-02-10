@@ -300,7 +300,7 @@ resource "aws_ecs_service" "ecs_service_jenkins" {
   name            = "${var.envPrefix}_ecs_service_jenkins"
   task_definition = "${aws_ecs_task_definition.ecs_task_definition_jenkins.family}:${max("${aws_ecs_task_definition.ecs_task_definition_jenkins.revision}", "${data.aws_ecs_task_definition.ecs_task_definition_jenkins.revision}")}"
   desired_count   = 1
-  launch_type     = "FARGATE"
+# launch_type     = "FARGATE"
   health_check_grace_period_seconds  = 3000
   cluster =       "${aws_ecs_cluster.ecs_cluster_jenkins.id}"
 
@@ -324,7 +324,7 @@ resource "aws_ecs_service" "ecs_service_gitlab" {
   name            = "${var.envPrefix}_ecs_service_gitlab"
   task_definition = "${aws_ecs_task_definition.ecs_task_definition_gitlab.family}:${max("${aws_ecs_task_definition.ecs_task_definition_gitlab.revision}", "${data.aws_ecs_task_definition.ecs_task_definition_gitlab.revision}")}"
   desired_count   = 1
-  launch_type     = "FARGATE"
+# launch_type     = "FARGATE"
   health_check_grace_period_seconds  = 3000
   cluster =       "${aws_ecs_cluster.ecs_cluster_gitlab.id}"
 
@@ -348,7 +348,7 @@ resource "aws_ecs_service" "ecs_service_codeq" {
   name            = "${var.envPrefix}_ecs_service_codeq"
   task_definition = "${aws_ecs_task_definition.ecs_task_definition_codeq.family}:${max("${aws_ecs_task_definition.ecs_task_definition_codeq.revision}", "${data.aws_ecs_task_definition.ecs_task_definition_codeq.revision}")}"
   desired_count   = 1
-  launch_type     = "FARGATE"
+# launch_type     = "FARGATE"
   health_check_grace_period_seconds  = 3000
   cluster =       "${aws_ecs_cluster.ecs_cluster_codeq.id}"
 
