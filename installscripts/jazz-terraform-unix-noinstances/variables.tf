@@ -19,10 +19,14 @@ variable "cognito_pool_password" {type = "string" default = "cognito_pool_passwo
 # Copying these resources to TMP on remote machines,
 # since $HOME is not reliable for all of our scenarios.
 #
+<<<<<<< HEAD
 variable "jenkinsPluginsSourceDir" {
   type = "string"
   default = "../jenkinsplugins"
 }
+=======
+
+>>>>>>> upstream/master
 variable "cookbooksSourceDir" {
   type = "string"
   default = "../cookbooks"
@@ -31,6 +35,13 @@ variable "chefDestDir" {
   type = "string"
   default = "/tmp/jazz-chef"
 }
+<<<<<<< HEAD
+=======
+variable "contentRepo" {
+  type = "string"
+  default = "https://github.com/tmobile/jazz-content.git"
+}
+>>>>>>> upstream/master
 #
 # Jenkins related variables
 #
@@ -80,11 +91,17 @@ variable "scmmap" {
 variable "codeqmap" {
   type = "map"
   default = {
+<<<<<<< HEAD
     codequality_type = "replacecodeqtype"
     sonar_server_elb = "replaceelb"
     sonar_username = "replaceusername"
     sonar_passwd = "replacepasswd"
     sonar_server_public_ip = "replacepubip"
+=======
+    sonar_server_elb = "replaceelb"
+    sonar_username = "replaceusername"
+    sonar_passwd = "replacepasswd"
+>>>>>>> upstream/master
   }
 }
 
@@ -113,3 +130,31 @@ variable "additional_tags" {
   default = {}
 }
 variable "aws_tags" { type = "string" }
+<<<<<<< HEAD
+=======
+variable "jenkins_docker_image" {
+  type = "string"
+  default = "jazzserverless/jazzoss-jenkins:1.0.0"
+}
+variable "gitlab_docker_image" {
+  type = "string"
+  default = "gitlab/gitlab-ce:11.3.0-ce.0"
+}
+variable "codeq_docker_image" {
+  type = "string"
+  default = "jazzserverless/jazzoss-sonarqube:1.0.0"
+}
+variable "dockerizedSonarqube" { default = false }
+variable "ecsJenkinscpu" { type = "string" default = "1024" }
+variable "ecsJenkinsmemory" { type = "string" default = "3072" }
+variable "ecsGitlabcpu" { type = "string" default = "512" }
+variable "ecsGitlabmemory" { type = "string" default = "3072" }
+variable "ecsSonarqubecpu" { type = "string" default = "256" }
+variable "ecsSonarqubememory" { type = "string" default = "2048" }
+variable "autovpc" { default = false }
+variable "vpc_cidr_block" {
+  type        = "string"
+  default     = "10.0.0.0/16"
+}
+variable "existing_vpc_ecs" { type = "string" }
+>>>>>>> upstream/master

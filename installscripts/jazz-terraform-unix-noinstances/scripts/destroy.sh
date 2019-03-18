@@ -2,6 +2,10 @@
 date
 
 stack_name=""
+<<<<<<< HEAD
+=======
+identity=""
+>>>>>>> upstream/master
 loopIndx=0
 
 if [ "$1" == "" ]; then
@@ -17,7 +21,12 @@ if [ "$1" != "all" ] && [ "$1" != "frameworkonly" ]; then
 fi
 
 if [ -z "$JAZZ_INSTALLER_ROOT" ]; then
+<<<<<<< HEAD
     export JAZZ_INSTALLER_ROOT=`pwd`
+=======
+    # shellcheck disable=SC2155
+    export JAZZ_INSTALLER_ROOT=$(pwd)
+>>>>>>> upstream/master
 fi
 
 # Rename any stack_deletion out files if any
@@ -25,6 +34,7 @@ for x in $JAZZ_INSTALLER_ROOT/stack_de*.out
 do
     if [ -f "$x" ]
     then
+<<<<<<< HEAD
         mv $x ${x%.out}-old.out
     fi
 done
@@ -33,13 +43,30 @@ echo " ======================================================="
 echo " The following stack has been marked for deletion in AWS"
 echo " ________________________________________________"
 cd installscripts/jazz-terraform-unix-noinstances
+=======
+        mv "$x" "${x%.out}-old.out"
+    fi
+done
+
+# Delete the identity policy  - Created in installscripts/jazz-terraform-unix-noinstances/scripts/ses.sh
+aws ses delete-identity-policy --identity $identity --policy-name Policy-$stack_name
+
+echo " ======================================================="
+echo " The following stack has been marked for deletion in AWS"
+echo " ________________________________________________"
+cd installscripts/jazz-terraform-unix-noinstances || exit
+>>>>>>> upstream/master
 terraform state list
 
 echo " ======================================================="
 
 echo " Destroying of stack initiated!!! "
 echo " Execute  'tail -f stack_deletion_X.out' in below directory to see the stack deletion progress (X=1 or 2 or 3)"
+<<<<<<< HEAD
 echo $JAZZ_INSTALLER_ROOT
+=======
+echo "$JAZZ_INSTALLER_ROOT"
+>>>>>>> upstream/master
 
 echo " ======================================================="
 
@@ -52,11 +79,19 @@ if [ "$1" == "all" ]; then
     python scripts/DeleteStackPlatformServices.py $stack_name true
 
     #Deleting Cloud Front Distributions
+<<<<<<< HEAD
     cd $JAZZ_INSTALLER_ROOT/installscripts/jazz-terraform-unix-noinstances
     python scripts/DeleteStackCloudFrontDists.py $stack_name true
 
     echo "Destroy cloudfronts"
     cd $JAZZ_INSTALLER_ROOT/installscripts/jazz-terraform-unix-noinstances
+=======
+    cd "$JAZZ_INSTALLER_ROOT"/installscripts/jazz-terraform-unix-noinstances || exit
+    python scripts/DeleteStackCloudFrontDists.py $stack_name true
+
+    echo "Destroy cloudfronts"
+    cd "$JAZZ_INSTALLER_ROOT"/installscripts/jazz-terraform-unix-noinstances || exit
+>>>>>>> upstream/master
     python scripts/DeleteStackCloudFrontDists.py $stack_name false
 
     while [ $loopIndx -le 2 ];
@@ -96,7 +131,11 @@ if [ "$1" == "frameworkonly" ]; then
 fi
 
 
+<<<<<<< HEAD
 cd $JAZZ_INSTALLER_ROOT
+=======
+cd "$JAZZ_INSTALLER_ROOT" || exit
+>>>>>>> upstream/master
 
 if (grep -q "Error applying plan" ./stack_deletion_$loopIndx.out) then
     echo "Error occured in destroy, please refer stack_deletion.out and re-run destroy after resolving the issues."

@@ -1,7 +1,16 @@
+<<<<<<< HEAD:installscripts/cookbooks/jenkins/files/jobs/job_bitbucketteam_newService.sh
 JENKINS_CLI_CMD=$1
 BITBUCKET_ELB=$2
 
 JENKINS_CREDENTIAL_ID=`$JENKINS_CLI_CMD list-credentials system::system::jenkins | grep "jazz_repocreds"|cut -d" " -f1`
+=======
+#!/bin/sh
+
+JENKINS_CLI_CMD=$1
+BITBUCKET_ELB=$2
+
+JENKINS_CREDENTIAL_ID=$($JENKINS_CLI_CMD list-credentials system::system::jenkins | grep "jazz_repocreds"|cut -d" " -f1)
+>>>>>>> upstream/master:installscripts/jenkinscli/jobs/job_bitbucketteam_newService.sh
 cat <<EOF | $JENKINS_CLI_CMD create-job "Jazz_User_Services"
 <jenkins.branch.OrganizationFolder plugin="branch-api@2.0.10">
   <actions/>

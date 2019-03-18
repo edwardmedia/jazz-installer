@@ -38,11 +38,17 @@ scmmap = {
 
 #CodeQuality server map (set programmatically by wizard, not directly by user or terraform)
 codeqmap = {
+<<<<<<< HEAD
   codequality_type = "REPLACEME"
   sonar_server_elb = "REPLACEME"
   sonar_username = "REPLACEME"
   sonar_passwd = "REPLACEME"
   sonar_server_public_ip = "REPLACEME"
+=======
+  sonar_server_elb = "REPLACEME"
+  sonar_username = "REPLACEME"
+  sonar_passwd = "REPLACEME"
+>>>>>>> upstream/master
 }
 
 scmbb = true
@@ -52,3 +58,10 @@ atlassian_jar_path = "~/jazz_tmp/atlassian-cli-6.7.1/lib/bitbucket-cli-6.7.0.jar
 dockerizedJenkins = true
 additional_tags = {}
 aws_tags = "[]"
+<<<<<<< HEAD
+=======
+dockerizedSonarqube = false
+autovpc = false
+vpc_cidr_block = "10.0.0.0/16"
+existing_vpc_ecs = "replaceme"
+>>>>>>> upstream/master

@@ -75,12 +75,23 @@ def parse_and_replace_parameter_list(terraform_folder, parameter_list):
                    get_atlassian_tools_path() + "lib/bitbucket-cli-6.7.0.jar",
                    get_tfvars_file())
 
+<<<<<<< HEAD
     subprocess.call([
         'sed', '-i',
         's|stack_name=.*.$|stack_name="%s"|g' % (jazz_tag_details[0]),
         "scripts/destroy.sh"
     ])
 
+=======
+    # Update stack name and identity in destroy script
+    with open("scripts/destroy.sh", 'r') as file:
+        filedata = file.read()
+    filedata = re.sub(r'stack_name=.*', 'stack_name="%s"' % (jazz_tag_details[0]), filedata)
+    filedata = re.sub(r'identity=.*', 'identity="%s"' % (cognito_details[0]), filedata)
+
+    with open("scripts/destroy.sh", 'w') as file:
+        file.write(filedata)
+>>>>>>> upstream/master
 
 # Uses sed to modify the values of key-value pairs within a file
 # (such as a .tfvars file) that follow the form 'key = value'
@@ -97,17 +108,30 @@ def replace_tfvars(key, value, fileName):
         r's|\(%s = \)\(.*\)|\1\"%s\"|g' % (key, value), fileName
     ])
 
+<<<<<<< HEAD
 #replace it without double quotes
+=======
+
+# replace it without double quotes
+>>>>>>> upstream/master
 def replace_tfvars_map(key, value, fileName):
     subprocess.call([
         'sed', "-i\'.bak\'",
         r's|\(%s = \)\(.*\)|\1%s|g' % (key, value), fileName
     ])
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> upstream/master
 def validate_email_id(email_id):
     """
         Parse the parameters send from run.py and validate Cognito details
     """
+<<<<<<< HEAD
+=======
+    # flake8: noqa
+>>>>>>> upstream/master
     if re.search('[^@]+@[^@]+\.[^@]+', email_id) is None:
         return False
     else:

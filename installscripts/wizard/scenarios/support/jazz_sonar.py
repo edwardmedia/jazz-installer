@@ -1,6 +1,7 @@
 #!/usr/bin/python
 import os
 import sys
+<<<<<<< HEAD
 import subprocess
 from jazz_common import get_tfvars_file, replace_tfvars
 
@@ -24,10 +25,32 @@ def add_sonar_config_to_files(parameter_list):
 
 
 def check_sonar_user(url, username, passwd, token):
+=======
+import requests
+from requests.auth import HTTPBasicAuth
+import hashlib
+import datetime
+from jazz_common import get_tfvars_file, replace_tfvars, replace_tfvars_map
+
+
+def add_sonar_config_to_files(sonar_server_elb, sonar_username, sonar_passwd):
+    """
+        Add Sonar configuration to terraform.tfvars
+     """
+
+    replace_tfvars('sonar_server_elb', sonar_server_elb, get_tfvars_file())
+    replace_tfvars('sonar_username', sonar_username, get_tfvars_file())
+    replace_tfvars('sonar_passwd', sonar_passwd, get_tfvars_file())
+    replace_tfvars('codeq', 1, get_tfvars_file())
+
+
+def check_sonar_user(url, username, passwd, token=''):
+>>>>>>> upstream/master
     """
         Check if the sonar user is present in Sonar server
     """
     sonar_url = 'http://' + url + '/api/user_tokens/search'
+<<<<<<< HEAD
     if token:
         cmd = 'curl -u ' + token + ': '+ sonar_url
     else:
@@ -43,6 +66,15 @@ def check_sonar_user(url, username, passwd, token):
             return 1
     except:
         return 0
+=======
+
+    if token:
+        response = requests.get(sonar_url, auth=HTTPBasicAuth(token, ''))
+    else:
+        response = requests.get(sonar_url, auth=HTTPBasicAuth(username, passwd))
+
+    return response.ok
+>>>>>>> upstream/master
 
 
 def get_add_existing_sonar_config(terraform_folder):
@@ -60,8 +92,12 @@ def get_add_existing_sonar_config(terraform_folder):
     sonar_passwd = raw_input("Sonar password :")
 
     # Check if the user provided Sonar user exist
+<<<<<<< HEAD
     if check_sonar_user(sonar_server_elb, sonar_username,
                             sonar_passwd):
+=======
+    if check_sonar_user(sonar_server_elb, sonar_username, sonar_passwd):
+>>>>>>> upstream/master
         print(
             "Great! We can proceed with this Sonar user....We will need few more details of Sonar server"
         )
@@ -69,6 +105,7 @@ def get_add_existing_sonar_config(terraform_folder):
         sys.exit(
             "Kindly provide an 'Admin' Sonar user with correct password and run the installer again!"
         )
+<<<<<<< HEAD
 
     # Get Sonar public ip
     sonar_server_public_ip = raw_input("Sonar Server PublicIp :")
@@ -80,11 +117,16 @@ def get_add_existing_sonar_config(terraform_folder):
     ]
 
     add_sonar_config_to_files(parameter_list)
+=======
+    add_sonar_config_to_files(sonar_server_elb, sonar_username, sonar_passwd)
+
+>>>>>>> upstream/master
 
 def get_and_add_docker_sonar_config(sonar_docker_path):
     """
         Launch a dockerized Sonar server.
     """
+<<<<<<< HEAD
     os.chdir(sonar_docker_path)
     print("Running docker launch script")
     subprocess.call([
@@ -100,3 +142,10 @@ def get_and_add_docker_sonar_config(sonar_docker_path):
     print(parameter_list[0:])
 
     add_sonar_config_to_files(parameter_list)
+=======
+    encrypt_passwd = hashlib.md5()
+    encrypt_passwd.update(str(datetime.datetime.now()))
+    sonar_passwd = encrypt_passwd.hexdigest()
+    replace_tfvars_map("dockerizedSonarqube", "true", get_tfvars_file())
+    add_sonar_config_to_files("replaceme", "admin", sonar_passwd)
+>>>>>>> upstream/master

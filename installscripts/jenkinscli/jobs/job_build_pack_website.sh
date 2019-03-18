@@ -1,8 +1,10 @@
+#!/bin/sh
+
 JENKINS_CLI_CMD=$1
 BITBUCKET_ELB=$2
 
-JENKINS_CREDENTIAL_ID=`$JENKINS_CLI_CMD list-credentials system::system::jenkins | grep "jazz_repocreds"|cut -d" " -f1`
-cat <<EOF | $JENKINS_CLI_CMD create-job "delete-service"
+JENKINS_CREDENTIAL_ID=$($JENKINS_CLI_CMD list-credentials system::system::jenkins | grep "jazz_repocreds"|cut -d" " -f1)
+cat <<EOF | $JENKINS_CLI_CMD create-job "build-pack-website"
 <flow-definition plugin="workflow-job@2.12">
   <actions/>
   <description></description>
@@ -13,7 +15,7 @@ cat <<EOF | $JENKINS_CLI_CMD create-job "delete-service"
         <hudson.model.StringParameterDefinition>
           <name>service_name</name>
           <description></description>
-          <defaultValue>newServissceX</defaultValue>
+          <defaultValue>testwebsite</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>domain</name>
@@ -21,23 +23,23 @@ cat <<EOF | $JENKINS_CLI_CMD create-job "delete-service"
           <defaultValue>slf</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
-          <name>version</name>
+          <name>scm_branch</name>
           <description></description>
-          <defaultValue>1.0</defaultValue>
+          <defaultValue>master</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
-          <name>tracking_id</name>
+          <name>scm_project</name>
           <description></description>
-          <defaultValue>1001</defaultValue>
+          <defaultValue>slf</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
-          <name>environment_id</name>
+          <name>request_id</name>
           <description></description>
-          <defaultValue></defaultValue>
+          <defaultValue>none</defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
-    <org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty>
+   <org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty>
       <triggers/>
     </org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty>
   </properties>
@@ -46,7 +48,7 @@ cat <<EOF | $JENKINS_CLI_CMD create-job "delete-service"
       <configVersion>2</configVersion>
       <userRemoteConfigs>
         <hudson.plugins.git.UserRemoteConfig>
-          <url>http://$BITBUCKET_ELB/slf/delete-serverless-service-build-pack.git</url>
+          <url>http://$BITBUCKET_ELB/slf/jenkins-build-pack-website.git</url>
           <credentialsId>$JENKINS_CREDENTIAL_ID</credentialsId>
         </hudson.plugins.git.UserRemoteConfig>
       </userRemoteConfigs>

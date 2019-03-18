@@ -157,7 +157,11 @@ data "aws_iam_policy_document" "dev-serverless-static-policy-data-contents" {
     ]
     principals  {
       type="AWS",
+<<<<<<< HEAD
       identifiers = ["${aws_iam_role.lambda_role.arn}"]
+=======
+      identifiers = ["${aws_iam_role.platform_role.arn}"]
+>>>>>>> upstream/master
     }
     resources = [
       "${aws_s3_bucket.dev-serverless-static.arn}/*"
@@ -170,7 +174,11 @@ data "aws_iam_policy_document" "dev-serverless-static-policy-data-contents" {
     ]
     principals  {
       type="AWS",
+<<<<<<< HEAD
       identifiers = ["${aws_iam_role.lambda_role.arn}"]
+=======
+      identifiers = ["${aws_iam_role.platform_role.arn}"]
+>>>>>>> upstream/master
     }
     resources = [
       "${aws_s3_bucket.dev-serverless-static.arn}"
@@ -191,7 +199,11 @@ data "aws_iam_policy_document" "stg-serverless-static-policy-data-contents" {
     ]
     principals  {
       type="AWS",
+<<<<<<< HEAD
       identifiers = ["${aws_iam_role.lambda_role.arn}"]
+=======
+      identifiers = ["${aws_iam_role.platform_role.arn}"]
+>>>>>>> upstream/master
     }
     resources = [
       "${aws_s3_bucket.stg-serverless-static.arn}/*"
@@ -204,7 +216,11 @@ data "aws_iam_policy_document" "stg-serverless-static-policy-data-contents" {
     ]
     principals  {
       type="AWS",
+<<<<<<< HEAD
       identifiers = ["${aws_iam_role.lambda_role.arn}"]
+=======
+      identifiers = ["${aws_iam_role.platform_role.arn}"]
+>>>>>>> upstream/master
     }
     resources = [
       "${aws_s3_bucket.stg-serverless-static.arn}"
@@ -227,7 +243,11 @@ data "aws_iam_policy_document" "prod-serverless-static-policy-data-contents" {
     ]
     principals  {
       type="AWS",
+<<<<<<< HEAD
       identifiers = ["${aws_iam_role.lambda_role.arn}"]
+=======
+      identifiers = ["${aws_iam_role.platform_role.arn}"]
+>>>>>>> upstream/master
     }
     resources = [
       "${aws_s3_bucket.prod-serverless-static.arn}/*"
@@ -240,7 +260,11 @@ data "aws_iam_policy_document" "prod-serverless-static-policy-data-contents" {
     ]
     principals  {
       type="AWS",
+<<<<<<< HEAD
       identifiers = ["${aws_iam_role.lambda_role.arn}"]
+=======
+      identifiers = ["${aws_iam_role.platform_role.arn}"]
+>>>>>>> upstream/master
     }
     resources = [
       "${aws_s3_bucket.prod-serverless-static.arn}"
@@ -261,7 +285,11 @@ data "aws_iam_policy_document" "jazz-web-policy-data-contents" {
     ]
     principals  {
       type="AWS",
+<<<<<<< HEAD
       identifiers = ["${aws_iam_role.lambda_role.arn}"]
+=======
+      identifiers = ["${aws_iam_role.platform_role.arn}"]
+>>>>>>> upstream/master
     }
     resources = [
       "${aws_s3_bucket.jazz-web.arn}/*"
@@ -275,7 +303,11 @@ data "aws_iam_policy_document" "jazz-web-policy-data-contents" {
     ]
     principals  {
       type="AWS",
+<<<<<<< HEAD
       identifiers = ["${aws_iam_role.lambda_role.arn}"]
+=======
+      identifiers = ["${aws_iam_role.platform_role.arn}"]
+>>>>>>> upstream/master
     }
     resources = [
       "${aws_s3_bucket.jazz-web.arn}"

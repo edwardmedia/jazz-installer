@@ -8,7 +8,12 @@
         "CLOUDFRONT_ORIGIN_ID": "",
         "ACCOUNTID": "",
         "REGION": "",
+<<<<<<< HEAD
         "ROLEID": "",
+=======
+        "PLATFORMSERVICES_ROLEID": "",
+        "USERSERVICES_ROLEID": "",
+>>>>>>> upstream/master
         "ES_HOSTNAME": "",
         "COGNITO": {
             "USER_POOL_ID": "",
@@ -33,6 +38,14 @@
             "STG_BUCKET": "",
             "PROD_BUCKET": ""
         },
+<<<<<<< HEAD
+=======
+        "KINESIS_LOGS_STREAM": {
+          "DEV": "{KINESIS_LOGS_STREAM_DEV}",
+          "STG": "{KINESIS_LOGS_STREAM_STG}",
+          "PROD": "{KINESIS_LOGS_STREAM_PROD}"
+        },
+>>>>>>> upstream/master
         "TAGS": []
     },
     "REPOSITORY": {
@@ -112,5 +125,15 @@
         "SLACK_TOKEN": "{slack_token}",
         "SLACK_WORKSPACE": "{slack_workspace}",
         "SLACK_SVC_ID": "{slack_svc_acc_id}"
+<<<<<<< HEAD
     }
+=======
+    },
+    "SPLUNK": {
+        "IS_ENABLED": "{ENABLE_SPLUNK_FEATURE}",
+        "ENDPOINT": "{SPLUNK_ENDPOINT}",
+        "HEC_TOKEN": "{SPLUNK_TOKEN}",
+        "INDEX": "{SPLUNK_INDEX}"
+ }
+>>>>>>> upstream/master
 }
